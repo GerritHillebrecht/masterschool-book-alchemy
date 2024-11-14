@@ -1,6 +1,9 @@
 .book-cards {
     max-width: 1000px;
-    margin: auto;
+    margin-inline: auto;
+    margin-block: 4rem;
+    padding-inline: 1rem;
+
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;

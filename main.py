@@ -1,7 +1,8 @@
+import os
+
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
-from sqlalchemy.orm import joinedload
-import os
+
 from data_models import db, Author, Book
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -18,22 +19,16 @@ def get_populate_database():
 
     return jsonify([
         book.to_dict()
-        for book in db.session.query(Book).all()
+        for book in db.session.query(Book).join(Author).all()
     ])
 
 
 @app.get("/")
 def get_home():
-    books_with_authors = db.session.query(Book).join(Author).all()
-    print("books")
-    print("-----------------------------")
-    for book in books_with_authors:
-        print(book.to_dict())
-    print("-----------------------------")
-
     books = [
         book.to_dict()
         for book in db.session.query(Book)
+        .join(Author)
         .order_by(Book.id.desc())
         .all()
     ]
@@ -42,7 +37,10 @@ def get_home():
 
 @app.get("/api/v1/authors")
 def get_authors():
-    return [author.to_dict() for author in db.session.query(Author).order_by(Author.id.desc()).all()]
+    return jsonify([
+        author.to_dict()
+        for author in db.session.query(Author).join(Book).order_by(Author.id.desc()).all()
+    ]), 200
 
 
 @app.post("/api/v1/authors")
@@ -67,7 +65,10 @@ def add_author():
 
 @app.get("/api/v1/books")
 def get_books():
-    return [book.to_dict() for book in db.session.query(Book).all()]
+    return jsonify([
+        book.to_dict()
+        for book in db.session.query(Book).all()
+    ])
 
 
 @app.post("/api/v1/books")
@@ -90,6 +91,16 @@ def add_book():
     db.session.commit()
 
     return jsonify(book.to_dict()), 200
+
+
+@app.delete("/api/v1/books/<int:book_id>")
+def delete_book(book_id: int):
+    db.session.query(Book).filter(Book.id == book_id).delete()
+    db.session.commit()
+
+    return jsonify({
+        "message": f'Successfully deleted book with id {book_id}'
+    })
 
 
 def populate_database():
