@@ -1,0 +1,7 @@
+.book-cards {
+    max-width: 1000px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}

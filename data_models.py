@@ -1,17 +1,41 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.ext.declarative import as_declarative
+from sqlalchemy import func
+from sqlalchemy.orm import relationship
 
 db = SQLAlchemy()
 
 
-# @as_declarative
-# class Base(db.Model):
-#     def to_dict(self):
-#         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-#     pass
+class ToDictMixin:
+    def to_dict(self, visited=None):
+        # Prevent endless recursion
+        if visited is None:
+            visited = set()
+        if self in visited:
+            return {'id': self.id}
+
+        visited.add(self)
+
+        # Add table-columns with values to dict
+        dict_representation = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+
+        # Add relationships if existing
+        for rel in self.__mapper__.relationships:
+            related_obj = getattr(self, rel.key)
+
+            if related_obj is not None:
+                if isinstance(related_obj, list):
+                    dict_representation[rel.key] = [item.to_dict(visited) for item in related_obj]
+                else:
+                    dict_representation[rel.key] = related_obj.to_dict(visited)
+
+        return dict_representation
 
 
-class Author(db.Model):
+class BaseModel(ToDictMixin, db.Model):
+    __abstract__ = True
+
+
+class Author(BaseModel):
     __tablename__ = "authors"
 
     def __str__(self):
@@ -21,17 +45,16 @@ class Author(db.Model):
         print(vars(self))
         return f'Author(id = {self.id}, name = {self.name}, birth_date = {self.birth_date}, date_of_death = {self.date_of_death})'
 
-    def to_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
     birth_date = db.Column(db.String, nullable=False)
     date_of_death = db.Column(db.String, nullable=True)
-    books = db.relationship('Book', backref='authors', lazy=True)
+    books = db.relationship('Book', back_populates='author', lazy=True)
+    created_at = db.Column(db.DateTime, server_default=func.current_timestamp())
+    updated_at = db.Column(db.DateTime, server_default=func.current_timestamp())
 
 
-class Book(db.Model):
+class Book(BaseModel):
     __tablename__ = "books"
 
     def __str__(self):
@@ -40,20 +63,11 @@ class Book(db.Model):
     def __repr__(self):
         return f'Book(id = {self.id}, title = {self.title}, isbn = {self.isbn}, publication_year = {self.publication_year})'
 
-    def to_dict(self):
-        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
-
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     isbn = db.Column(db.String, unique=True, nullable=False)
     title = db.Column(db.String, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'), nullable=False)
+    author = relationship("Author", back_populates="books")
     publication_year = db.Column(db.Integer)
-
-
-if __name__ == "__main__":
-    author = Author(
-        name="Antonio Banderas",
-        birth_date="1970"
-    )
-
-    print(author)
+    created_at = db.Column(db.DateTime, server_default=func.current_timestamp())
+    updated_at = db.Column(db.DateTime, server_default=func.current_timestamp())
