@@ -117,25 +117,30 @@ def populate_database():
     authors = [
         Author(
             name="Franz Kafka",
+            image="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Franz_Kafka%2C_1923.jpg/440px-Franz_Kafka%2C_1923.jpg",
             birth_date="1883-07-03",
             date_of_death="1924-06-03"
         ),
         Author(
             name="Oscar Wilde",
+            image="https://149886463.v2.pressablecdn.com/wp-content/uploads/2020/10/Oscar-Wilde-2.jpg",
             birth_date="1854-10-16",
             date_of_death="1900-11-30"
         ),
         Author(
             name="Stephen King",
+            image="https://img.aachener-zeitung.de/public/lokales/f1u5oq-file7wg6epqwepu7rx3k9g1/alternates/BASE_SIXTEEN_NINE/file7wg6epqwepu7rx3k9g1",
             birth_date="1947-09-21"
         ),
         Author(
             name="Charles Dickens",
+            image="https://victorianweb.org/art/illustration/eytinge/141.jpg",
             birth_date="1812-02-07",
             date_of_death="1870-06-09"
         ),
         Author(
             name="Hermann Hesse",
+            image="https://library.ethz.ch/en/locations-and-media/platforms/short-portraits/hermann-hesse--1877-1962-/_jcr_content/par/textimage/image.imageformat.textdouble.566772422.jpg",
             birth_date="1877-07-02",
             date_of_death="1962-08-09"
         )

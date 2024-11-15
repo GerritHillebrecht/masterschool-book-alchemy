@@ -13,7 +13,6 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
-    border-bottom: 1px solid black;
     width: 100%;
     display: flex;
     align-items: center;
@@ -25,6 +24,13 @@ header nav {
     max-width: 1000px;
     margin-inline: auto;
     padding-inline: 1rem;
+}
+
+header nav .logo {
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 header nav select {

@@ -50,6 +50,7 @@ class Author(BaseModel):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
+    image = db.Column(db.String, nullable=False)
     birth_date = db.Column(db.String, nullable=False)
     date_of_death = db.Column(db.String, nullable=True)
     books = db.relationship('Book', back_populates='author', lazy=True)
