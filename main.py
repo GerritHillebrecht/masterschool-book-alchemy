@@ -77,7 +77,24 @@ def add_author():
 def get_books():
     return jsonify([
         book.to_dict()
-        for book in db.session.query(Book).all()
+        for book in db.session.query(Book).join(Author).all()
+    ])
+
+
+@app.get("/api/v1/books/search")
+def get_books_by_search():
+    search_string = request.args.get("q", "")
+    query = db.session.query(Book).join(Author)
+
+    if search_string:
+        query = query.filter(
+            (Book.title.ilike(f"%{search_string}%")) |
+            (Author.name.ilike(f"%{search_string}%"))
+        )
+
+    return jsonify([
+        book.to_dict()
+        for book in query.all()
     ])
 
 

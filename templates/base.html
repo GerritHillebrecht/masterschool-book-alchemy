@@ -16,6 +16,45 @@
 <header class="shadow bg-white/80 backdrop-blur backdrop-saturate">
     <nav class="flex items-center justify-between">
         <a href="/" class="logo text-2xl text-stone-800">The Book Nook</a>
+        <form class="max-w-md mx-auto w-full relative">
+            <label for="default-search"
+                   class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input type="search" id="default-search"
+                       class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                       placeholder="Search book title, author name, isbn ..." required/>
+                <button type="submit"
+                        class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Search
+                </button>
+            </div>
+            <div
+                    id="search_container"
+                    class="absolute hidden top-[105%] w-full border shadow bg-white/90 backdrop-blur backdrop-saturate rounded-lg overflow-hidden">
+                <p class="py-2 px-4 border-b uppercase text-stone-600 font-bold text-xs">Search results:</p>
+                <div id="search_results">
+<!--                    <div class="flex items-center gap-4 border-b p-4">-->
+<!--                        <img class="w-10 h-10 rounded-full"-->
+<!--                             src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQAoAMBIgACEQEDEQH/xAAbAAABBQEBAAAAAAAAAAAAAAAEAQIDBQYAB//EADsQAAIBAwMCBAQEBQMCBwAAAAECAwAEEQUSITFBBhNRYRQicYEyQpGxFSMzocFi4fEHUhYXJFNyotH/xAAWAQEBAQAAAAAAAAAAAAAAAAAAAQL/xAAWEQEBAQAAAAAAAAAAAAAAAAAAEQH/2gAMAwEAAhEDEQA/APLZZXc/NTYCEfLdqMd4WUAJg9zmg3K7/loJJpQ7ZHSoHOaftyM4poXnj+9BwOBgVMFGzOaFfk5P9qltoJbqQRRc59TQNZAxwTxT4oH2s6AFFwGwPWtho/ha02Oup3Vr86ZVOSwx3/29q09v4V0GCMeZOI8r/MwSu8duDQeV/DSSSCNY2Zy20ALk5rS6Z4B1W/COI/JHd5Tj/wCvWtt/EdB0SPOnLaNMRne8ihj96p28cXhcoLW3kjz1t7rBH2qKC/8ALvUYBvbbKRn+m+doz2BHp70DqPhK8jhYwxyyleGEjYOP2q3HiATvlJLm3m42uJw/6irGDxV5DJ8ZKkhIws6Hr7EUHmi2TRu3mttKnBVutRTIqtlCMdxXqWp2lj4jtwq27NMxGZMYKn6+nPvWZn8AX5DfCzecoOOYyvT70RkUZR1FLKQOvGat9R8OXmmJuuogAv49jBiv1A6VUyJub2A4qhiyZ4PaiFZShB+1ClCOooiEheqA0DXQlvRaYykLjdj6UXIVkGPw49ajKjgY+XFAP3weldtHalcjNKOnAoHxkDg9KSWPv2pEbc3IqeQqUGTQDQ273MyxxclsfarWeH+HXBtrQ5kAy0jdQf8AH+KK8MoqPcXcgwkUZIB6Eig7S2m1W8ZIhukdiXOOncmgnttRn3KvnzSuD0X5QDVtFZ6tqew/D7os8ecTs/TvWr8PeF7WztkcoJJcZLN1z9K0sFqIz+H+1RYw9r4Ou5RulljhHpFGMn9aJXwCHkDNdTY75atw0e1OMADmgpZJeApPHUnpQjPR/wDT6zYDMjkdTk5q2s/A+jwggxbw3PJo2C9IGMnB7UfBOCMBgPaoKG68IrCTJpkrwsOiq3B9jms5qGq6nYXfwt0XhlXmMqeGxyPqD0r0tJAR81VfiHRbTWrMxzDDryjjqpqiqlms9TkkgmKbtisGHPDKCP7npXnnirQV02bzJFHlsSFliHyk+hHY0beR3+g6lC7ZkXGwgjHyj/irnULtb3TCrBGglUMpJ5B7g0Hl8hIbDA4p6kgZGKKubYiVwZAQp4wOtDbAMgEfeqjiwce9NeTACjNIy4I2/wBq4g9qBigK+TRMKoxz0oc/McAUREvHPFA1oQrk0xgS4we+KVs7sZrQeDbEXF+sjoGkAyisMhf9R/cCgmv7aW20eO1ClGflwOgHb61qvBmiLaWRaQHzJTudv2ApbuziuL9A2Tg7m9Tj/etHYKQFOQARzxUVZW0S4HGBRLIpHr9KjhX0HHqe9LI7jjKkdhioqJtuyRTjIPegzue1w2OT1p9zJiUKxAYjI5rolNxESMbgflB9KCqcvCWA6Y5OcfaqxtWlt5ch1JJ/MSKvL2zwC7S7R16dKzV/p7kyMsjP/wDFelVF5Ya952C8Z285KHcR74q1TV4QB/MjcdcgjNeaMbi2fBkdTk43Jgf7VDLfyM26VwHHUjnNEazxGU1uznkhPz27EqF4z64rIWN9GirFM5EbHbID1B9f7URpWqmKR1dyVbOeKB1WCKUyPa5bPzMhHbPb6H9KoH1lBEBKqRlW6cE4P+KqGBKBsct2AqxeX4i0eGT+oo4HuOlQ71wBvBx1FBXowDEY5FSxoXfripZY45GL8DHTFRlxt2hcUA8RwOetOBOc9qZj2pxJx6UHO3PPf0rXeBW/9TPNnDBQqD6dKx5yfer7wtcGC4cEfL5TkEH82KDcabL8TqEzA7lHGeMsR1rRxMEjG8EbetZXwkqljkY565rVx25nbarHOSajSWTW7W1QtM6ogH5jQUXjDRpnWPzWGW2glDgmpr3S7AwE3hHTknGf1rE6jFYJcBNPumL9lk+ZT+gojcXN5atbSSxkNtHY4pLK+hWSEswVXABz2JGR/wDlYKHVGjb4d0Ky9GQng/T2qXWbmeysRJuO4nOV7HFBpNX120VpI3dCVGCPSshN4qWBmWJz14x0NUVr8VrOoxW0QBuZ25JPA9SfbHNbbVfDdh4d8N3E8ABuwFHxDnkksBx6D2oilh8V3CjeQpGcFZEzkf4oa+WO+hNxaJtkILPEnA+2f2oWzvLoviK5zx0bDqfqD1p8kqRo1zaoLeeIj4i3TlMH86+2eCO2aoAjmO0c9qWG5KuybeBnGeOTUd1/WLR/gf5l46A9qFVis3zHGaCVWK3W7seD70OWIbaV5oi1kRpSrD5j0prqygEYoIgxznoKjkkOaWSUnsOKVIvMG7HXkUDBk07bg4IqadfLXIIxUUG92+9AjDjAAFF6S2y5BOQdpAH2rolXJaUZx0o3TIrW/vP50rwIoxujXccn2NBpvBd0skrsn4gcc+npj7VqbvVhpkTqATPgBVPXk8f5rA+GbTy9QlWZmJjlK7d3AHvWpv8AS2lkWWNgrzgIrj8p7E++P8VFCX+p3WsJcRaeYkihyJbiVlLEj/tB+nQCqXV9OvNOeG5jvTc71BBweK1B8M2iqkIiAES/1d3frn6/Sq3X0ZpYbe2UzGLGwqpAUeuepoKES3BtBqDxmSWK5EaoAfn3LkD7Ef3rS+KjdT+HkimCwXCgM+CTn1GP+asNEsj8dYWdwctAWup1UYCnbtRT785/Sk/6jxlNPMqL8znaWFB594U1FdKvbq5kx5ojCxtjpk8/sKtJNdutYZor5Z5Ld1zHFb4GW6gscdOKyiv5coZ87Tw1aPTrtrVFktyqAjG4LzVQTfPF/DIWltIo7teBKi7T9xVBYyNLfHzpAqyBlkkYHbg9c4H0qx1G7EozI67j+I7Bk02OMQ6ccr/MuDthGPmK92oAEy0IQSBgn5lzUAYb2kwWxzwvT3oqC0ZAQxIHbvmobuDyY3J74oIYQTdItsrM/YHqTiibvTbm35m8oOeqJMrlfrgnFAEkMWUn7VJANjncxAdfmoCBbKcFsA0x90bEAcikWYcDd96dNmQJyOM80Ab8qOcip7I7sr0oVmLcZNSQSeU27r7UFg2Fj/F271PokPxF4gP9NmwQfWg5SpjwetSWly1o0UwJ2RuGPYnB9aDWaRayw6mLhSWSUEkns2cYraQItygL8g/rWJF2YZtO+FkdoZfmyR2yea2WlTBEXLZDHgkdainXFjfxoBBIki/6hggemaGFrdRSbp544gRwsC7m98FuB+laMnemc1nvEOrQ6ZDwPMuZDiNByee9QF6FCsU0reWVJGOeTjrkn1JoXx4vn6OqhtgVwxJGar7nW7vRbCF5LKe4uJ+qqME1S+KvE0l/aLEI5IUKfMkilSp9DVGP1G1kiLMoBU8nbTLOeZV/lnp+VuRQhumyRuNSWspVic4zVRZpeTFg3kxZHQlc/vTZJppJDI7Fm/7ieac8hjHVcYyCKEa6bHPToAKCSa5kkK7jyvQjiulm823IYDOKEf5mB9adN/LjBH1oIrmNoJzE2QQM+1TIy+ar8cRnP6VBK0sz7yGby1ALdcemaewwu31498UEMfJ7USkZbHl8sO2afbRxbsnmjYykeSqr7cUFMEPUVLcIYyhC7cjIpsZPYE1YaoVeGHaR8q8jFBX7y754xRLRvJb7VXIPpQOSDxWi0jTLx9Jk1FceQpI5oNJpGntPo1iYid9qvmqODux+X74/vVza3GYw5j8sDkKfyD0NVvhW6ZdPW3n+XJyh9RVvexqhYxvu3rli3Woqa51j4a0kd5AAgyefasr4YSfW9ZfVb5sxxMViHYH1ApuvSSNp0wQYJwv3PFXtkqaPp1vaoFJVQCT696C+k3vEQdxBHb96888UaZPcanFAkrlX6gnOK0moeKtN02LbM7yS/wDtJz+p6YrN3nitru4E8OnPvjHyhV+/OKDJ31i1ndPHIOVOM1CBg5PrR+oXU93K0kttIpbOflxzVYxYfiVh9qqC1kwMMSV9u1ROeSR0JqNWJHQ0q5AwevWglibLYNJfN/MVB2UU2P8AEPrT75181cDlec0E9g4/nRF2iSdcHHQ96SVldREo4TjcagjmHAOCBwKfK6bMjrQK+I1AQ5z1pIpdx+bJP7UOCxbuRREcRxuHH2oIYQxlQYAyRRt6Ct9jHy9MVBpoDXqBuinNGQh7i8lxzznmgq5BtkI5NafTr2b+ARWqZ2eZkr61UXlozEPGuSeoWrC0kaC3RXDLjPGMUFhezH+GBAxQxEEFD0qDwtqdzdatJHdTNIHgIVmPpzVlPYQnw6ssbZeQ4NZzTwbHWLTy1ber4J9QeD+9Bt7i2DyMsgG2RQyqT0PrST6Kl5eL8WZXTj5fMIFG6e63MW3ILR9A3pRkamRiCPwjGQBUUDHpWmWOWXS7Vzj5S43H9TmqzU9avEkENpbQW8WOdsY6Vqfg3aMtk7uwxVbe+GfiYy7sEH5hjcaDzu/up5WYuxZs9BxVQ4JJ3VtdV0SOBGdCzHp1AzWce0QE78A56+lVFYq47VzEk5+1GyJGi9aGcKeVwKBsfX70+6hUtu3jJpsY+bPpXSSsW3YyAaCeLTpGj3DBzTJ7CWJckg596kivpduCeO2Khnumc4Yn9aB0ICjBPIprTsrkKSah3YrlJB4BoLLSYlN/l2GOOtXHiOWCz1S1NhGEJjAk/wBWarfhGt4IWbhpZAuT9audd0of+ILe1DgiSNcP2oO1aOz034a4tGPmSYLI3amXyC5EMqYweoq50XTreR54NQHnNH8qNjrUutaXia2t7SPaQN2BQLa2L/w6GItjJzjNEaLpNi2oGV1zNG3Uj/NTRwvFcwmRiNq4wRVxbaa91dKIWCox3O2OQKis18YdP1i4hxhVkPQdVPT96t7C7jEpG4Ybv7VN428MedaxX+mqfPtUKuvUyJ/kisZDeTQIjzqNueNnQ+xB6Gg9CivbcoTI2McA561XazrsFtAyhyOD06msdPrsOH2ztG2MBJBtwf2qgvbmWZ2YPlT3zmqi4uNbWS1bKc84z2yazdxOGfIBx6UxpMR7d+agLbTyM0CszlsMOKTFRtKfygCnxAkk98UHbsjI6Cl2k4JPWo1OFPHWkL4/CaCRpAjcCo3k8w5IppORzXKOtA5Vwc9aIjG7k9qgUmnheMg80Gi8Syt8PpeMDCg8fatFJGlzHbyzKDJhRv711dUGi1a3itIbfyF27iM+9Vl1fTxa3GVbsBzS11FWzfzrcFwCc9e9ajR0CaZEMk5HUnNdXUXBy1gfG+nW1rMTBHsEwLso6Z9RXV1RHn95BHIs25fwqCOaqPLUEfSurq0iK4jUqDzmoF4z9aSuoGsoUjFTW/LYPpXV1BE3G72NJGAT07UtdQOVQVJNIRgcUldQO2gDNPhUbx7murqD/9k="-->
+<!--                             alt="Author avatar">-->
+<!--                        <div>-->
+<!--                            <h5 class="text-base font-semibold">-->
+<!--                                Der Steppenwolf-->
+<!--                                <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">9783518031599</span>-->
+<!--                            </h5>-->
+<!--                            <p class="text-sm text-mute">Hermann Hesse</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </form>
         <div class="flex items-center">
             <button type="button" style="white-space: nowrap"
                     class="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
@@ -25,7 +64,8 @@
                     class="py-2.5 px-5 me-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                 Add an author
             </button>
-            <select id="sorting_select" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select id="sorting_select"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option>Order by</option>
                 <option value="id:desc">Latest &#8595;</option>
                 <option value="id:asc">Oldest &#8593;</option>
@@ -46,5 +86,33 @@
 {% block js_imports %} {% endblock %}
 
 
+<footer class="bg-white rounded-lg shadow dark:bg-gray-900 m-4">
+    <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="sm:flex sm:items-center sm:justify-between">
+            <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                <img src="{{url_for('static',filename='images/logo_book_nook.png')}}" class="h-8"
+                     alt="The Book Nook Logo"/>
+                <span class="logo-text self-center text-2xl font-semibold whitespace-nowrap dark:text-white">The Book Nook</span>
+            </a>
+            <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                </li>
+                <li>
+                    <a href="#" class="hover:underline">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"/>
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2024 <a
+                href="https://flowbite.com/" class="hover:underline">The Book Nook™</a>. All Rights Reserved.</span>
+    </div>
+</footer>
 </body>
 </html>
