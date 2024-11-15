@@ -16,7 +16,10 @@ class ToDictMixin:
         visited.add(self)
 
         # Add table-columns with values to dict
-        dict_representation = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        dict_representation = {
+            c.name: getattr(self, c.name)
+            for c in self.__table__.columns
+        }
 
         # Add relationships if existing
         for rel in self.__mapper__.relationships:

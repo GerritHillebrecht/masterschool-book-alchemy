@@ -3,6 +3,8 @@ import os
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 
+from sqlalchemy import desc, asc
+
 from data_models import db, Author, Book
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -25,11 +27,19 @@ def get_populate_database():
 
 @app.get("/")
 def get_home():
+    sort_by = request.args.get("sort_by", "id")
+    sort_order = request.args.get("sort_order", "desc")
+
+    if sort_by == "author":
+        sort_by_clause = desc(Author.name) if sort_order == "desc" else asc(Author.name)
+    else:
+        sort_by_clause = desc(sort_by) if sort_order == "desc" else asc(sort_by)
+
     books = [
         book.to_dict()
         for book in db.session.query(Book)
         .join(Author)
-        .order_by(Book.id.desc())
+        .order_by(sort_by_clause)
         .all()
     ]
     return render_template("home.html", books=books), 200

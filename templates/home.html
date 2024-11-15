@@ -9,14 +9,29 @@ Blog
 {% endblock %}
 
 {% block content %}
+<header>
+    <nav>
+        <select id="sorting_select">
+            <option>Order by</option>
+            <option value="id:desc">Latest &#8595;</option>
+            <option value="id:asc">Oldest &#8593;</option>
+            <option value="title:asc">title &#8593;</option>
+            <option value="title:desc">title &#8595;</option>
+            <option value="author:asc">author &#8593;</option>
+            <option value="author:desc">author  &#8595;</option>
+            <option value="isbn:asc">ISBN &#8593;</option>
+            <option value="isbn:desc">ISBN  &#8595;</option>
+        </select>
+    </nav>
+</header>
 <div class="book-cards">
     {% for book in books %}
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">{{ book.title }}</h5>
             <h6 class="card-subtitle mb-2 text-body-secondary">{{ book.isbn }}</h6>
-            <p class="card-text">{{ book.author_id }}</p>
-            <button data-book-delete="{{book.get('id')}}" class="btn btn-danger">Delete</button>
+            <p class="card-text">{{ book.author.name }}</p>
+            <button data-book-delete="{{book.get('id')}}" data-book-title="{{book.get('title')}}" class="btn btn-danger">Delete</button>
         </div>
     </div>
     {% endfor %}
