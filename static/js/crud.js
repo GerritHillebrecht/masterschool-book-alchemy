@@ -9,46 +9,56 @@ sorting_select.addEventListener("change", ({target: {value}}) => {
 
     window.location.href = newURL;
 })
+searchContainerRef = document.getElementById("search_container")
+autocompleteRef = document.getElementById("autocomplete")
+searchInputRef = document.getElementById("default-search")
 
-let currentController = null
+let abortController = null;
 
-search_container = document.getElementById("search_container")
-search_results = document.getElementById("search_results")
-search_input = document.getElementById("default-search")
-search_input.addEventListener("keyup", async ({ target: { value } }) => {
-    search_results.innerHTML = ""
+searchInputRef.addEventListener("keyup", async ({ target: { value } }) => {
+    if (abortController) {
+        abortController.abort();
+    }
+
+    abortController = new AbortController();
+    const signal = abortController.signal
+
+    autocompleteRef.innerHTML = ""
 
     if (value.length >= MIN_SEARCH_STRING_LENGTH) {
-        results = await fetch_search_results(value);
+        results = await fetch_search_results(value, signal);
         book_results = results.map(book => create_search_result(book))
-        book_results.forEach(book => search_results.appendChild(book))
+        book_results.forEach(book => autocompleteRef.appendChild(book))
+
+        if (book_results.length === 0) {
+            info_string = document.createElement('p');
+            info_string.className = "p-4"
+            info_string.innerText = `No results for ${value}.`
+
+            autocompleteRef.appendChild(info_string)
+        }
     }
     else {
         info_string = document.createElement('p');
         info_string.className = "p-4"
         info_string.innerText = `Enter at least ${MIN_SEARCH_STRING_LENGTH} characters to start search.`
 
-        search_results.appendChild(info_string)
+        autocompleteRef.appendChild(info_string)
     }
 })
 
-search_input.addEventListener("focus", (e) => {
-    search_container.classList.remove("hidden")
+searchInputRef.addEventListener("focus", (e) => {
+    searchContainerRef.classList.remove("hidden")
 })
 
-search_input.addEventListener("blur", (e) => {
-    search_container.classList.add("hidden")
+searchInputRef.addEventListener("blur", (e) => {
+    setTimeout(() => {
+        searchContainerRef.classList.add("hidden")
+    }, 100)
 })
 
-async function fetch_search_results(search_query) {
-    if (currentController) {
-        currentController.abort();
-    }
-
-    currentController = new AbortController();
-    const signal = currentController.signal;
-
-    return fetch(`${BASE_URL}/books/search?q=${search_query}`, {signal}).then(res => res.json())
+async function fetch_search_results(search_query, signal) {
+    return fetch(`${BASE_URL}/books/search?q=${search_query}`, { signal }).then(res => res.json())
 }
 
 
@@ -77,7 +87,7 @@ async function delete_book(book_id) {
 
 function create_search_result(book) {
     const containerDiv = document.createElement('a');
-    containerDiv.href = "/asd"
+    containerDiv.href = `/book/${book.id}`
     containerDiv.className = 'flex items-center gap-4 border-b p-4';
 
     const img = document.createElement('img');

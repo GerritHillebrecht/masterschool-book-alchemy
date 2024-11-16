@@ -70,6 +70,8 @@ class Book(BaseModel):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     isbn = db.Column(db.String, unique=True, nullable=False)
     title = db.Column(db.String, nullable=False)
+    cover = db.Column(db.String, nullable=False)
+    excerpt = db.Column(db.String, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'), nullable=False)
     author = relationship("Author", back_populates="books")
     publication_year = db.Column(db.Integer)
