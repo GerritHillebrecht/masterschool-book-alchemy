@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75738925-0076-4e3e-ac77-dceeea701fbe" name="Changes" comment="[feat] added book-detail page">
-      <change afterPath="$PROJECT_DIR$/data_population.py" afterDir="false" />
+    <list default="true" id="75738925-0076-4e3e-ac77-dceeea701fbe" name="Changes" comment="[feat] added rating system">
+      <change afterPath="$PROJECT_DIR$/static/js/ai_data.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/footer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/library.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/data/library.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/crud.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/crud.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/book_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book_detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731767833517</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="[feat] added rating system">
+      <option name="closed" value="true" />
+      <created>1731868644024</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731868644024</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -169,6 +176,7 @@
     <MESSAGE value="[feat] added tailwind &amp; flowbite" />
     <MESSAGE value="[feat] added search functionality" />
     <MESSAGE value="[feat] added book-detail page" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] added book-detail page" />
+    <MESSAGE value="[feat] added rating system" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] added rating system" />
   </component>
 </project>
