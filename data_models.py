@@ -53,7 +53,7 @@ class Author(BaseModel):
     image = db.Column(db.String, nullable=False)
     birth_date = db.Column(db.String, nullable=False)
     date_of_death = db.Column(db.String, nullable=True)
-    books = db.relationship('Book', back_populates='author', lazy=True)
+    books = db.relationship('Book', back_populates='author', lazy=True, cascade="all, delete-orphan")
     created_at = db.Column(db.DateTime, server_default=func.current_timestamp())
     updated_at = db.Column(db.DateTime, server_default=func.current_timestamp())
 
@@ -71,6 +71,7 @@ class Book(BaseModel):
     isbn = db.Column(db.String, unique=True, nullable=False)
     title = db.Column(db.String, nullable=False)
     cover = db.Column(db.String, nullable=False)
+    rating = db.Column(db.Float, nullable=False)
     excerpt = db.Column(db.String, nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'), nullable=False)
     author = relationship("Author", back_populates="books")

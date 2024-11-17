@@ -62,25 +62,47 @@ async function fetch_search_results(search_query, signal) {
 }
 
 
+author_delete_buttons = document.querySelectorAll("span[data-author-delete]")
+author_delete_buttons.forEach(span => span.addEventListener("click", async (e) => {
+    if (confirm(`Do you really want to delete author "${span.dataset.authorName}" and ALL RELATED BOOKS?`)) {
+        try {
+            res = await delete_author(span.dataset.authorDelete)
+            deleted_author = await res.json()
+
+            location.reload()
+            return `Successfully deleted author {deleted_author.id}`
+        }
+        catch (e) {
+            console.error("error: ", e)
+        }
+    }
+}))
+
+
 delete_buttons = document.querySelectorAll("button[data-book-delete]")
 delete_buttons.forEach(button => button.addEventListener("click", async (e) => {
-        if (confirm(`Do you really want to delete book "${button.dataset.bookTitle}"?`)) {
-            try {
-                res = await delete_book(button.dataset.bookDelete)
-                deleted_book = await res.json()
+    if (confirm(`Do you really want to delete book "${button.dataset.bookTitle}"?`)) {
+        try {
+            res = await delete_book(button.dataset.bookDelete)
+            deleted_book = await res.json()
 
-                location.reload()
-                return `Successfully deleted book {deleted_book.id}`
-            }
-            catch (e) {
-                console.error("error: ", e)
-            }
+            location.reload()
+            return `Successfully deleted book {deleted_book.id}`
         }
-    })
-)
+        catch (e) {
+            console.error("error: ", e)
+        }
+    }
+}))
 
 async function delete_book(book_id) {
     return fetch(`${BASE_URL}/books/${book_id}`, {
+        method: "DELETE",
+    })
+}
+
+async function delete_author(author_id) {
+    return fetch(`${BASE_URL}/authors/${author_id}`, {
         method: "DELETE",
     })
 }

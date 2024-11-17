@@ -7,15 +7,15 @@ Books
 {% block content %}
 <main>
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-[1fr,2fr] py-4 gap-8 relative">
-            <div class="relative">
+        <div class="grid grid-cols-[6fr,9fr,5fr] py-4 gap-8 relative">
+            <aside class="relative">
                 <figure class="relative p-4 border rounded shadow sticky top-[80px]">
                     <picture>
                         <img src="{{book.cover}}" alt="{{book.name}}" class="w-full block object-fit object-center">
                     </picture>
                 </figure>
-            </div>
-            <div>
+            </aside>
+            <article>
                 <h1 class="text-4xl">{{book.title}}</h1>
                 <p class="text-sm italic text-stone-800 mt-1 mb-2">
                     <span class="bg-blue-100 inline-block mr-2 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
@@ -24,15 +24,35 @@ Books
                     Publication from {{book.publication_year}}
                 </p>
                 <div class="flex items-center gap-2 mt-6">
-                    <img class="w-10 h-10 rounded-full object-cover object-center" src="{{book.author.image}}" alt="{{book.author.name}}">
+                    <img class="w-10 h-10 rounded-full object-cover object-center" src="{{book.author.image}}"
+                         alt="{{book.author.name}}">
                     <div>
                         <p>{{book.author.name}}</p>
                         <p class="text-xs">{{book.author.books | length}} books</p>
                     </div>
                 </div>
 
-                <p class="mt-6">{{book.excerpt}}</p>
-            </div>
+                <p class="mt-6 text-xs uppercase tracking-widest font-bold text-neutral-700">
+                    Excerpt from the book
+                </p>
+                <p class="mt-2">{{book.excerpt}}</p>
+            </article>
+            <aside class="relative">
+                <div class="rounded-xl border-blue-200 border shadow p-4 sticky top-[80px]">
+                    <h5 class="text-xs mb-2 uppercase font-bold tracking-widest text-neutral-700">
+                        Books by {{book.author.name}}
+                    </h5>
+                    <div class="grid grid-cols-[repeat(3,1fr)] gap-2">
+                        {% for book in book.author.books %}
+                        <a href="/book/{{book.id}}" class="transition duration-300 hover:scale-105">
+                            <img title="{{book.title}}" class="aspect-[9/12] object-contain object-center" src="{{book.cover}}" alt="{{book.title}}" />
+                            <p class="text-xs line-clamp-1 text-center">{{book.title}}</p>
+                        </a>
+
+                        {% endfor %}
+                    </div>
+                </div>
+            </aside>
         </div>
     </div>
 </main>
