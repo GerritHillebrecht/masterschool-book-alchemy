@@ -173,7 +173,7 @@ def data_population(app):
             title="The Trial",
             rating=randrange(20, 50)/10,
             isbn="978-0-14-118290-8",
-            cover="http://bookcoverarchive.com/wp-content/uploads/amazon/the_trial.jpg",
+            cover="https://images.booksense.com/images/650/694/9789388694650.jpg",
             excerpt="""
              "The Trial" by Franz Kafka is a haunting narrative of Josef K., a man who finds himself arrested by a mysterious authority for an unspecified crime. The story delves into themes of bureaucracy, guilt, and the surreal nature of existence. As Josef navigates the absurd and labyrinthine judicial system, he faces a series of bizarre and frustrating obstacles. Kafka's work explores the dehumanizing effects of an impersonal legal system and raises questions about the nature of justice and the individual's role within society. The novel's unsettling atmosphere and existential undertones leave a lasting impact on readers, making it a seminal work in modern literature.
              """,
