@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75738925-0076-4e3e-ac77-dceeea701fbe" name="Changes" comment="[feat] added add-book and add-author routes">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="75738925-0076-4e3e-ac77-dceeea701fbe" name="Changes" comment="[chore] changed generic url in README" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -189,7 +185,31 @@
       <option name="project" value="LOCAL" />
       <updated>1731927022055</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="[feat] added README">
+      <option name="closed" value="true" />
+      <created>1731927670079</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731927670079</updated>
+    </task>
+    <task id="LOCAL-00013" summary="[feat] changed port to support codio">
+      <option name="closed" value="true" />
+      <created>1731927684632</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1731927684632</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[chore] changed generic url in README">
+      <option name="closed" value="true" />
+      <created>1731927818100</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731927818100</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -204,6 +224,9 @@
     <MESSAGE value="[feat] added rating system" />
     <MESSAGE value="[feat] added ai-recommendations" />
     <MESSAGE value="[feat] added add-book and add-author routes" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] added add-book and add-author routes" />
+    <MESSAGE value="[feat] added README" />
+    <MESSAGE value="[feat] changed port to support codio" />
+    <MESSAGE value="[chore] changed generic url in README" />
+    <option name="LAST_COMMIT_MESSAGE" value="[chore] changed generic url in README" />
   </component>
 </project>
