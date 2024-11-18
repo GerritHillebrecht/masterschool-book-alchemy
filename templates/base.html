@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Masterschool - {% block title %} {% endblock %}</title>
+    <title>The book nook - {% block title %} {% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{{ url_for('static', filename='images/logo_book_nook.png') }}" type="image/x-icon">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <link rel="stylesheet" href="{{url_for('static',filename='style.css')}}">
@@ -13,11 +14,11 @@
     {% block css_imports %} {% endblock %}
 </head>
 <body>
-{% include "navbar.html" %}
+{% include "components/navbar.html" %}
 
 {% block content %} {% endblock %}
 
-{% include "footer.html" %}
+{% include "components/footer.html" %}
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
 <script src="{{url_for('static',filename='js/ai_data.js')}}"></script>
 {% block js_imports %} {% endblock %}

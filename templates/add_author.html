@@ -1,22 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+Add Author
+{% endblock %}
 
-<form action="/api/v1/authors" method="POST">
-    <label for="name">Author Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
+{% block content %}
+<main class="max-w-[var(--max-w-content)] mx-auto px-4 py-8">
 
-    <label for="birthdate">Birthdate:</label>
-    <input type="date" id="birthdate" name="birthdate" required><br><br>
-    <label for="date_of_death">Date of Death:</label>
-    <input type="date" id="date_of_death" name="date_of_death"><br><br>
-    <input type="submit" value="Add Author">
-</form>
+    <form action="/api/v1/authors" method="POST">
+        <h1 class="mb-6 text-4xl">🤓 Add a new author</h1>
+        <div class="grid grid-cols-3 gap-4">
+            <!-- author name -->
+            <div>
+                <label
+                        for="input_author_name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    Author name
+                </label>
+                <input
+                        type="text"
+                        name="name"
+                        id="input_author_name"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Enter the full name of the author"
+                        required
+                />
+            </div>
 
-</body>
-</html>
+            <!-- image -->
+            <div>
+                <label
+                        for="input_author_image"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    Avatar
+                </label>
+                <input
+                        type="text"
+                        name="image"
+                        id="input_author_image"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="External link to an image of the author. Hosting is not supported"
+                        required
+                />
+            </div>
+
+            <!-- dob -->
+            <div>
+                <label
+                        for="input_author_dob"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    Birthday of the author
+                </label>
+                <input
+                        type="text"
+                        name="birth_date"
+                        id="input_author_dob"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="format: yyyy-mm-dd"
+                        required
+                />
+            </div>
+
+            <!-- dod -->
+            <div>
+                <label
+                        for="input_author_dod"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    * Optional: Date of death
+                </label>
+                <input
+                        type="text"
+                        name="date_of_death"
+                        id="input_author_dod"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="format: yyyy-mm-dd"
+                />
+            </div>
+        </div>
+
+        <div class="mt-4 flex items-center gap-4">
+            <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Add the author
+            </button>
+        </div>
+    </form>
+</main>
+{% endblock %}

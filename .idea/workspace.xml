@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75738925-0076-4e3e-ac77-dceeea701fbe" name="Changes" comment="[feat] added rating system">
-      <change afterPath="$PROJECT_DIR$/static/js/ai_data.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
+    <list default="true" id="75738925-0076-4e3e-ac77-dceeea701fbe" name="Changes" comment="[feat] added ai-recommendations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/library.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/data/library.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/crud.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/crud.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_author.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_author.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/add_book.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/add_book.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/book_detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/book_detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/components/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +53,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Development\MasterSchool-Projects\masterschool-book-alchemy\templates\components" />
       <recent name="C:\Development\MasterSchool-Projects\masterschool-book-alchemy\static" />
       <recent name="C:\Development\MasterSchool-Projects\masterschool-book-alchemy\templates" />
     </key>
@@ -164,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731868644024</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="[feat] added ai-recommendations">
+      <option name="closed" value="true" />
+      <created>1731873263985</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731873263985</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -177,6 +191,7 @@
     <MESSAGE value="[feat] added search functionality" />
     <MESSAGE value="[feat] added book-detail page" />
     <MESSAGE value="[feat] added rating system" />
-    <option name="LAST_COMMIT_MESSAGE" value="[feat] added rating system" />
+    <MESSAGE value="[feat] added ai-recommendations" />
+    <option name="LAST_COMMIT_MESSAGE" value="[feat] added ai-recommendations" />
   </component>
 </project>

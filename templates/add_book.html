@@ -1,15 +1,143 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  </head>
-  <body>
+{% extends "base.html" %}
+{% block title %}
+Add Book
+{% endblock %}
 
-  <form action="/api/v1/books" method="POST">
-  <!-- Add the form here -->
-  </form>
+{% block content %}
+<main class="max-w-[var(--max-w-content)] mx-auto px-4 py-8">
 
-  </body>
-</html>
+    <form action="/api/v1/books" method="POST">
+        <h1 class="mb-6 text-4xl">🔥 Add a new book</h1>
+        <div class="grid grid-cols-3 gap-4">
+            <!-- book title -->
+            <div>
+                <label
+                        for="input_title_book"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    Book title
+                </label>
+                <input
+                        type="text"
+                        name="title"
+                        id="input_title_book"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Enter the full title of the book"
+                        required
+                />
+            </div>
+
+            <!-- isbn -->
+            <div>
+                <label
+                        for="input_isbn_book"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    ISBN
+                </label>
+                <input
+                        type="text"
+                        name="isbn"
+                        id="input_isbn_book"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder='E.g. "978-3-7657-1111-4"'
+                        required
+                />
+            </div>
+
+            <!-- rating -->
+            <div>
+                <label
+                        for="input_rating_book"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    Rating
+                </label>
+                <input
+                        type="number"
+                        name="rating"
+                        max="5"
+                        min="1"
+                        id="input_rating_book"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Rate the book from 1 to 5 (float allowed)"
+                        required
+                />
+            </div>
+
+            <!-- Author -->
+            <div>
+                <label for="input_author_book" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">The
+                    book's
+                    author</label>
+                <select name="author_id" id="input_author_book"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option selected>Choose an author</option>
+                    {% for author in authors %}
+                    <option value="{{author.id}}">{{author.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- cover -->
+            <div>
+                <label
+                        for="input_cover_book"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    The cover
+                </label>
+                <input
+                        type="text"
+                        name="cover"
+                        id="input_cover_book"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Provide an external link, hosting not supported"
+                        required
+                />
+            </div>
+
+            <!-- publication_year -->
+            <div>
+                <label
+                        for="input_publication_year_book"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    Publication year
+                </label>
+                <input
+                        type="number"
+                        name="publication_year"
+                        id="input_publication_year_book"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="The year the book was published"
+                        required
+                />
+            </div>
+
+            <!-- excerpt -->
+            <div>
+                <label
+                        for="message"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                    Excerpt from / preview of the book
+                </label>
+                <textarea
+                        id="message"
+                        name="excerpt"
+                        rows="4"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Write your thoughts here..."
+                ></textarea>
+            </div>
+        </div>
+        <div class="mt-4 flex items-center gap-4">
+            <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                Add the book
+            </button>
+        </div>
+    </form>
+</main>
+{% endblock %}

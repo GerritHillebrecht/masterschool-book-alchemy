@@ -1,6 +1,7 @@
-flask
-sqlalchemy
+flask~=3.1.0
+sqlalchemy~=2.0.36
 flask_sqlalchemy
 flask-cors
 jinja2
-requests
+requests~=2.32.3
+Werkzeug~=3.1.3

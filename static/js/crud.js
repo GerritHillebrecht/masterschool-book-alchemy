@@ -1,4 +1,4 @@
-BASE_URL = "http://localhost:3000/api/v1"
+BASE_URL = `${window.location.origin}/api/v1`
 MIN_SEARCH_STRING_LENGTH = 2;
 
 sorting_select = document.getElementById("sorting_select")

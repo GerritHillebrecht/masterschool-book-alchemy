@@ -6,6 +6,17 @@ db = SQLAlchemy()
 
 
 class ToDictMixin:
+    """
+    Adds the "to_dict" functionality to Table-classes.
+    Makes returning python dictionaries from these classes
+    manageable.
+    """
+
+    # def __init__(self):
+    #     self.__mapper__ = None
+    #     self.__table__ = None
+    #     self.id = None
+
     def to_dict(self, visited=None):
         # Prevent endless recursion
         if visited is None:
@@ -35,18 +46,30 @@ class ToDictMixin:
 
 
 class BaseModel(ToDictMixin, db.Model):
+    """
+    Custom Parent-class to extend from, easily extendable, especially useful
+    for scalability.
+    """
     __abstract__ = True
 
 
 class Author(BaseModel):
+    """
+    Representation of the Author table.
+    """
     __tablename__ = "authors"
 
     def __str__(self):
         return f'{self.name} ({self.birth_date}{f' - {self.date_of_death}' if self.date_of_death else ""})'
 
     def __repr__(self):
-        print(vars(self))
-        return f'Author(id = {self.id}, name = {self.name}, birth_date = {self.birth_date}, date_of_death = {self.date_of_death})'
+        # needed for line-length pep8 requirements
+        author_id = self.id
+        name = self.name
+        dob = self.birth_date
+        dod = self.date_of_death
+
+        return f'Author(id = {author_id}, name = {name}, birth_date = {dob}, date_of_death = {dod})'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String, nullable=False)
@@ -59,13 +82,22 @@ class Author(BaseModel):
 
 
 class Book(BaseModel):
+    """
+    Representation of the Book table.
+    """
     __tablename__ = "books"
 
     def __str__(self):
         return f'{self.title} ({self.publication_year}) [{self.isbn}]'
 
     def __repr__(self):
-        return f'Book(id = {self.id}, title = {self.title}, isbn = {self.isbn}, publication_year = {self.publication_year})'
+        # needed for line-length pep8 requirements
+        book_id = self.id
+        title = self.title
+        isbn = self.isbn
+        pub_year = self.publication_year
+
+        return f'Book(id = {book_id}, title = {title}, isbn = {isbn}, publication_year = {pub_year})'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     isbn = db.Column(db.String, unique=True, nullable=False)
